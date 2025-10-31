@@ -1,56 +1,207 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiendita Colombiana - Little Colombian Shop</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- FAVICON + TÍTULO -->
+  <link rel="icon" href="./assets/logo.jpg" type="image/png">
+  <title>Tiendita Colombiana</title>
+  <meta name="description" content="Productos artesanales, comida típica y cultura colombiana con envío a todo el país.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Bienvenidos a Mi Sitio Web</h1>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre">Sobre Mí</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="inicio">
-            <h2>¡Hola, mundo!</h2>
-            <p>Esta es mi primera página web creada desde cero.</p>
-            <button id="cambiar-color">Cambiar color de fondo</button>
-        </section>
+  <div id="app">
 
-        <section id="sobre">
-            <h2>Sobre Mí</h2>
-            <p>Soy [tu nombre], y estoy aprendiendo a programar páginas web.</p>
-        </section>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top" style="background: linear-gradient(135deg, #e63946, #f77f00);">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./assets/logo.jpg" alt="Logo" width="50" class="me-2 rounded-circle">
+          <span class="fw-bold">Tiendita Colombiana</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#catalogo">Catálogo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <form>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
-                
-                <button type="submit">Enviar</button>
-            </form>
-        </section>
-    </main>
+    <!-- 1. HOME -->
+    <section id="home" class="py-5 text-center">
+      <div class="container">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200" alt="Colombia" class="img-fluid rounded-4 shadow-lg mb-5" style="max-height: 500px; object-fit: cover;">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-success">Misión</h5>
+                <p>Llevar la esencia de Colombia a tu hogar con productos auténticos, artesanales y llenos de tradición.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-primary">Visión</h5>
+                <p>Ser el puente digital entre los artesanos colombianos y el mundo, promoviendo el comercio justo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-warning">Lo que somos</h5>
+                <p>Una tienda virtual con alma, que celebra la diversidad, el talento y la calidez de Colombia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 [Tu Nombre]. Todos los derechos reservados.</p>
-    </footer>
+    <!-- 2. CATÁLOGO -->
+    <section id="catalogo" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5 text-primary fw-bold">Catálogo de Productos</h2>
 
-    <script src="script.js"></script>
+        <!-- FILTROS -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="btn-group flex-wrap" role="group">
+              <button @click="filtro = 'todos'" :class="['btn', filtro === 'todos' ? 'btn-primary' : 'btn-outline-primary']">Todos</button>
+              <button @click="filtro = 'artesanias'" :class="['btn', filtro === 'artesanias' ? 'btn-primary' : 'btn-outline-primary']">Artesanías</button>
+              <button @click="filtro = 'comida'" :class="['btn', filtro === 'comida' ? 'btn-primary' : 'btn-outline-primary']">Comida</button>
+              <button @click="filtro = 'moda'" :class="['btn', filtro === 'moda' ? 'btn-primary' : 'btn-outline-primary']">Moda</button>
+              <button @click="filtro = 'hogar'" :class="['btn', filtro === 'hogar' ? 'btn-primary' : 'btn-outline-primary']">Hogar</button>
+              <button @click="filtro = 'cultura'" :class="['btn', filtro === 'cultura' ? 'btn-primary' : 'btn-outline-primary']">Cultura</button>
+              <button @click="filtro = 'belleza'" :class="['btn', filtro === 'belleza' ? 'btn-primary' : 'btn-outline-primary']">Belleza</button>
+              <button @click="filtro = 'souvenirs'" :class="['btn', filtro === 'souvenirs' ? 'btn-primary' : 'btn-outline-primary']">Souvenirs</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTOS -->
+        <div class="row g-4">
+          <div class="col-md-4" v-for="(p, i) in productosFiltrados" :key="i">
+            <div class="card h-100 shadow-sm producto-card">
+              <img :src="p.imagen" class="card-img-top" :alt="p.nombre">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ p.nombre }}</h5>
+                <p class="card-text text-muted flex-grow-1">{{ p.descripcion }}</p>
+                <strong class="text-success fs-5">${{ p.precio.toLocaleString() }}</strong>
+                <div class="d-flex align-items-center mt-3">
+                  <button @click="disminuir(i)" class="btn btn-outline-secondary btn-sm">-</button>
+                  <input v-model.number="cantidades[i]" min="1" class="form-control text-center mx-2" style="width:70px;">
+                  <button @click="aumentar(i)" class="btn btn-outline-secondary btn-sm">+</button>
+                </div>
+                <button @click="agregar(p, i)" class="btn btn-primary mt-3 w-100">Añadir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CONTACTO (INTACTO) -->
+    <section id="contacto" class="py-5">
+      <div class="container text-center">
+        <h2 class="mb-5 text-primary fw-bold">Contáctanos</h2>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="https://wa.me/573001234567" target="_blank" class="social-btn whatsapp">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+          <a href="https://facebook.com/tienditacolombiana" target="_blank" class="social-btn facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://instagram.com/tienditacolombiana" target="_blank" class="social-btn instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTÓN CARRITO FLOTANTE A LA DERECHA -->
+    <button @click="mostrarCarrito = true" class="btn-carrito-flotante">
+      <i class="bi bi-cart3"></i>
+      <span v-if="carrito.length" class="badge">{{ carrito.length }}</span>
+    </button>
+
+    <!-- MODAL CARRITO (MEJORADO) -->
+    <div v-if="mostrarCarrito" class="modal fade show d-block" style="background: rgba(0,0,0,0.6);">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content rounded-4 shadow-lg">
+          <div class="modal-header bg-gradient text-white rounded-top-4" style="background: linear-gradient(135deg, #e63946, #f77f00);">
+            <h5 class="modal-title fw-bold">Tu Carrito ({{ carrito.length }})</h5>
+            <button @click="mostrarCarrito = false" class="btn-close btn-close-white"></button>
+          </div>
+          <div class="modal-body p-4 bg-light">
+            <div v-if="carrito.length === 0" class="text-center py-5">
+              <i class="bi bi-cart-x display-1 text-muted"></i>
+              <p class="text-muted mt-3 fs-5">Tu carrito está vacío</p>
+            </div>
+            <div v-else>
+              <div v-for="(item, i) in carrito" :key="i" class="card mb-3 shadow-sm rounded-3">
+                <div class="row g-0 align-items-center">
+                  <div class="col-3">
+                    <img :src="item.imagen" class="img-fluid rounded-start" style="height: 90px; object-fit: cover;">
+                  </div>
+                  <div class="col-9">
+                    <div class="card-body py-3 px-4">
+                      <h6 class="mb-1 text-danger">{{ item.nombre }}</h6>
+                      <div class="d-flex align-items-center mb-2">
+                        <small class="text-muted me-2">Cantidad:</small>
+                        <button @click="disminuirEnCarrito(i)" class="btn btn-outline-secondary btn-sm">-</button>
+                        <input v-model.number="item.cantidad" min="1" class="form-control text-center mx-2" style="width:70px;">
+                        <button @click="aumentarEnCarrito(i)" class="btn btn-outline-secondary btn-sm">+</button>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <strong class="text-success">${{ (item.cantidad * item.precio).toLocaleString() }}</strong>
+                        <button @click="quitar(i)" class="btn btn-sm btn-outline-danger">
+                          Quitar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-4">
+                <button @click="vaciarCarrito" class="btn btn-outline-danger btn-sm">Vaciar carrito</button>
+                <h5 class="text-success">Total: ${{ total.toLocaleString() }}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between rounded-bottom-4 bg-white">
+            <button @click="mostrarCarrito = false" class="btn btn-secondary">Seguir comprando</button>
+            <a :href="'https://wa.me/573001234567?text=' + mensajeWhatsApp" target="_blank" class="btn btn-success d-flex align-items-center" v-if="carrito.length > 0">
+              Pagar con WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
